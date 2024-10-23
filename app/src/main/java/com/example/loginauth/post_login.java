@@ -73,7 +73,7 @@ public class post_login extends AppCompatActivity {
         editar.setOnClickListener(new View.OnClickListener(){
             @override
             public void onClick(View view){
-                
+                cambiarDatosUsuario();
             }
         });
 
@@ -141,28 +141,41 @@ public class post_login extends AppCompatActivity {
     }
 
 
+    public boolean validarDatos(){
+        if (nombre_usuario.to_String().isEmpty() || pais_usuario.to_String().isEmpty()){
+            return false;
+        }else{
+            return True;
+        }
+    }
+
     public void cambiarDatosUsuario(){
         mAuth = FirebaseAuth.getInstance();
         // OBTENER EL ID DEL USUARIO PARA LA COLECCION
         int id_usuario = mAuth.getUid().to_String();
-        id_usuario.put("nombre", nombre_usuario.to_String());
-        id_usuario.put("pais", pais_usuario.to_String())
-        
-        Map<String, object> datos_nuevos = new HashMap<>();
-        
-        db.collection("users").document(id_usuario)
-        .set(datos_nuevos)
-        .addOnSuccessListener(new OnSuccessListener<Void>() {
-            @Override
-            public void onSuccess(Void aVoid) {
-                Toast.makeText(post_login.this,)
-            }
-        })
-        .addOnFailureListener(new OnFailureListener() {
-            @Override
-            public void onFailure(@NonNull Exception e) {
-                Toast.makeText(post_login.this,"Error al escribir en la base de datos",Toast.LENGTH_SHORT).show();
+
+        boolean is_valid = validarDatos();
+
+        if(is_valid){
+            id_usuario.put("nombre", nombre_usuario.to_String());
+            id_usuario.put("pais", pais_usuario.to_String());
+            Map<String, object> datos_nuevos = new HashMap<>();
+            
+            db.collection("users").document(id_usuario)
+            .set(datos_nuevos)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    Toast.makeText(post_login.this,"Datos editados correctamente",Toast.LENGTH_SHORT).show();
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Toast.makeText(post_login.this,"Error al escribir en la base de datos",Toast.LENGTH_SHORT).show();
+                }
             }
         });
+        }
     }
 }
