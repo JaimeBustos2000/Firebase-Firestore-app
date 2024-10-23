@@ -33,7 +33,8 @@ import java.util.Map;
 public class post_login extends AppCompatActivity {
 
     Button log_out;
-
+    Button editar;
+    
     FirebaseAuth mAuth;
     FirebaseUser current_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -58,7 +59,8 @@ public class post_login extends AppCompatActivity {
 
         obtenerDatosUsuario();
         log_out = findViewById(R.id.desconectar);
-
+        editar = findViewById(R.id.editar_datos);
+        
         log_out.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -68,6 +70,14 @@ public class post_login extends AppCompatActivity {
 
     }
 
+        editar.setOnClickListener(new View.OnClickListener(){
+            @override
+            public void onClick(View view){
+                
+            }
+        });
+
+    
     public void salir() {
         /* Inicializar el autenticador y verificar que el usuario actual es quien esta conectado,
            luego lo desconecta */
@@ -128,5 +138,31 @@ public class post_login extends AppCompatActivity {
                     });
         };
 
+    }
+
+
+    public void cambiarDatosUsuario(){
+        mAuth = FirebaseAuth.getInstance();
+        // OBTENER EL ID DEL USUARIO PARA LA COLECCION
+        int id_usuario = mAuth.getUid().to_String();
+        id_usuario.put("nombre", nombre_usuario.to_String());
+        id_usuario.put("pais", pais_usuario.to_String())
+        
+        Map<String, object> datos_nuevos = new HashMap<>();
+        
+        db.collection("users").document(id_usuario)
+        .set(datos_nuevos)
+        .addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void aVoid) {
+                Toast.makeText(post_login.this,)
+            }
+        })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(post_login.this,"Error al escribir en la base de datos",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 }
