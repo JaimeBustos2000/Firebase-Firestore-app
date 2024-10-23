@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">loginauth</string>
+    <string name="action_settings">Settings</string>
+    <string name="bienvenida">
+        Bienvenido a la aplicacion
+    </string>
+    <string name="login">login</string>
+
+</resources>

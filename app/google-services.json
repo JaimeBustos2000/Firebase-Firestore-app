@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "144839014287",
+    "project_id": "loginauth-a11aa",
+    "storage_bucket": "loginauth-a11aa.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:144839014287:android:25c06472ca556934a0bdfa",
+        "android_client_info": {
+          "package_name": "com.example.loginauth"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7re6UXPHCwTV9tl8TjVuIONv4ZAhECfw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

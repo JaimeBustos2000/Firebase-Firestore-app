@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".post_login">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="INGRESO EXITOSO"
+        android:textAlignment="center"
+        android:textSize="50sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="55dp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nombreingreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/nombre_actual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textEmailAddress"
+            android:textSize="25sp" />
+
+        <TextView
+            android:id="@+id/nombrepais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pais"
+            android:textSize="20sp" />
+
+        <EditText
+            android:id="@+id/pais_actual"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:clickable="false"
+            android:ems="10"
+            android:focusable="false"
+            android:inputType="textEmailAddress"
+            android:textSize="25sp" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/desconectar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Desconectarse"
+        android:backgroundTint="@color/black"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
