@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient_background"
+    tools:context=".Registro">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="70dp"
+        android:layout_marginTop="200dp"
+        android:layout_marginEnd="70dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/nombreingreso"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nombre"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/nombre_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:inputType="textEmailAddress"
+            android:paddingStart="16dp"
+            android:paddingTop="10dp"
+            android:paddingEnd="16dp"
+            android:paddingBottom="9dp"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/nombrepais"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pais"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/pais_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="9dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/emailtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/email_add"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="9dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:inputType="textEmailAddress" />
+
+        <TextView
+            android:id="@+id/generotxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Seleccione su genero"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <Spinner
+            android:id="@+id/generoadd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="9dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:entries="@array/generos"
+            />
+
+        <TextView
+            android:id="@+id/passtxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Contraseña"
+            android:textSize="20sp"
+            android:layout_marginBottom="10dp"
+            />
+
+        <EditText
+            android:id="@+id/contrasena"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:textSize="20sp"
+            android:paddingTop="10dp"
+            android:paddingBottom="9dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:layout_marginBottom="20dp"
+            android:inputType="textPassword" />
+
+        <Button
+            android:id="@+id/btn_registro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Registrar"
+            android:backgroundTint="@color/verde"
+            android:textColor="@color/white"
+            />
+
+        <Button
+            android:id="@+id/volver"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Volver"
+            android:backgroundTint="@color/azul"
+            android:textColor="@color/white"
+            />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

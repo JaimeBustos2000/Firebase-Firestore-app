@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "711744129137",
+    "project_id": "verduritas-sa-jaimebustos",
+    "storage_bucket": "verduritas-sa-jaimebustos.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:711744129137:android:f8c48df54c8cb08e2a73d0",
+        "android_client_info": {
+          "package_name": "jaime.bustos.verduritassa"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-rdrGdqnKuQJ_z2YX2Pq_B0s2yUQ9OMk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

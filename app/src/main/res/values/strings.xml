@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">Verduritas SA-JaimeBustos</string>
+    <string name="action_settings">Settings</string>
+    <string name="bienvenida">
+        Bienvenido a la aplicacion
+    </string>
+    <string name="login">login</string>
+
+    <string-array name="tipocultivo">
+        <item>Tomates</item>
+        <item>Cebollas</item>
+        <item>Lechugas</item>
+        <item>Apio</item>
+        <item>Maiz</item>
+    </string-array>
+
+    <string-array name="generos">
+        <item>Femenino</item>
+        <item>Masculino</item>
+        <item>Otro</item>
+    </string-array>
+</resources>
