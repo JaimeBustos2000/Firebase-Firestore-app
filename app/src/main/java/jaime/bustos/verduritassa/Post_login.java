@@ -2,11 +2,12 @@ package jaime.bustos.verduritassa;
 
 import static android.content.ContentValues.TAG;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
@@ -25,29 +26,29 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-
+import jaime.bustos.verduritassa.tabla_dinamica;
 
 public class Post_login extends AppCompatActivity {
 
     ImageButton log_out;
-    Button editar;
-    
+    ImageButton add_button;
+
     FirebaseAuth mAuth;
     FirebaseUser current_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
-    EditText nombre_usuario;
-    EditText pais_usuario;
+    ArrayList<Cultivo> listaCultivos = new ArrayList<>();
 
     TableLayout mitabla;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,8 +61,14 @@ public class Post_login extends AppCompatActivity {
             return insets;
         });
 
-        obtenerDatosUsuario();
+        // Limpiar la lista para que se renderice la tabla cada vez que se inicie la actividad
+        listaCultivos.clear();
+
+        // Boton de añadir nuevo cultivo
+        add_button = findViewById(R.id.add);
+        // Desconectarse
         log_out = findViewById(R.id.desconectar);
+        // Referencia al tableLayout
         mitabla = findViewById(R.id.tabla);
 
         log_out.setOnClickListener(new View.OnClickListener() {
@@ -70,11 +77,26 @@ public class Post_login extends AppCompatActivity {
                 salir();
             }
         });
+
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intents = new Intent(Post_login.this, Nuevo_cultivo.class);
+                startActivity(intents);
+            }
+        });
+
+        // Esperar respuesta asincrona de manera sincronica
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Obtener_datos();
+            }
+        }, 1000);
     }
 
+
     public void salir() {
-        /* Inicializar el autenticador y verificar que el usuario actual es quien esta conectado,
-           luego lo desconecta */
         mAuth = FirebaseAuth.getInstance();
         current_user = mAuth.getCurrentUser();
 
@@ -82,93 +104,80 @@ public class Post_login extends AppCompatActivity {
             mAuth.signOut();
             Intent intents = new Intent(Post_login.this, Login.class);
             Toast.makeText(Post_login.this, "Saliendo....", Toast.LENGTH_SHORT).show();
+            finish();
             startActivity(intents);
-
         } else {
-            Toast.makeText(Post_login.this, "Error inesperado al intentar desconectarse",
-                    Toast.LENGTH_SHORT).show();
+            Toast.makeText(Post_login.this, "Error inesperado al intentar desconectarse", Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void obtenerDatosUsuario(){
+    public void Obtener_datos() {
+
+        listaCultivos.clear(); // Limpiar la lista antes de agregar los nuevos cultivos
+
         mAuth = FirebaseAuth.getInstance();
-        current_user = mAuth.getCurrentUser();
+        String user_id = mAuth.getUid();
 
-        // Verificar el estado del usuario y retornar su id
-        String id_user = current_user != null ? current_user.getUid() : null;
+        if (user_id != null) {
+            CollectionReference cultivos_ref = db.collection("users")
+                    .document(user_id)
+                    .collection("cultivos");
 
-        // Buscar los datos del documento en base a la id, en este caso id del usuario
-        if(current_user!=null){
-            db.collection("users").document(id_user)
-                    .get()
-                    .addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-                        @Override
-                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                            if (task.isSuccessful()) {
-                                // Obtiene el documento
-                                DocumentSnapshot document = task.getResult();
-                                // Verifica si el documento existe
-                                if (document != null && document.exists() && document.getData()!=null) {
-                                    // Transforma los datos obtenidos a un map
-                                    Map<String,Object> datos = new HashMap<>(document.getData());
+            cultivos_ref.get()
+                    .addOnCompleteListener(task -> {
+                        if (task.isSuccessful()) {
+                            for (DocumentSnapshot document : task.getResult()) {
+                                String alias_name = document.getString("Alias");
+                                String fecha_cultivo = document.getString("FIngreso");
+                                String fecha_cosecha = document.getString("FCosecha");
+                                String tipo = document.getString("TCultivo");
 
-                                    // Obtiene los datos especificos segun las claves que se guardaron y se transforma a str
-                                    String name = datos.get("nombre").toString();
-                                    String pais = datos.get("pais").toString();
-
-                                    // Usa los editText para mostrar los datos actuales en la bsd
-                                    pais_usuario.setText(pais);
-                                    nombre_usuario.setText(name);
-
-                                } else {
-                                    // Mensaje de error si no encuentra nada
-                                    Log.d(TAG, "No existe el documento!");
-                                }
-                            } else {
-                                // Error si no se pudo obtener el documento especifico con la id
-                                Log.w(TAG, "Error al obtener el documento.", task.getException()); // Manejo de errores
+                                Cultivo cultivo = new Cultivo(alias_name, fecha_cultivo, fecha_cosecha, tipo);
+                                listaCultivos.add(cultivo);
                             }
+                            add_rows();  // Actualizar la tabla con los datos obtenidos
+                        } else {
+                            Log.d("Cultivo", "Error al obtener cultivos", task.getException());
                         }
                     });
-        };
-    }
-
-
-    public boolean validarDatos(){
-        if (nombre_usuario.toString().isEmpty() || pais_usuario.toString().isEmpty()){
-            return false;
-        }else{
-            return true;
+        } else {
+            Log.d("TAG", "Error: user_id es null");
         }
     }
 
-    public void cambiarDatosUsuario() {
-        mAuth = FirebaseAuth.getInstance();
-        // OBTENER EL ID DEL USUARIO PARA LA COLECCION
-        String id_usuario = Objects.requireNonNull(mAuth.getUid());
+    public static class Cultivo {
+        private String alias;
+        private String fechaCultivo;
+        private String fechaCosecha;
+        private String Tipo;
 
-        boolean is_valid = validarDatos();
-
-        if (is_valid) {
-            Map<String, Object> datos_nuevos = new HashMap<>();
-            datos_nuevos.put("nombre", nombre_usuario.toString());
-            datos_nuevos.put("pais", pais_usuario.toString());
-
-            db.collection("users").document(String.valueOf(id_usuario))
-                    .set(datos_nuevos)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            Toast.makeText(Post_login.this, "Datos editados correctamente", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            Toast.makeText(Post_login.this, "Error al escribir en la base de datos", Toast.LENGTH_SHORT).show();
-                        }
-                    });
+        public Cultivo(String alias, String fechaCultivo, String fechaCosecha, String Tipo) {
+            this.alias = alias;
+            this.fechaCultivo = fechaCultivo;
+            this.fechaCosecha = fechaCosecha;
+            this.Tipo = Tipo;
         }
+
+        public String getAlias() {
+            return alias;
+        }
+
+        public String getFechaCultivo() {
+            return fechaCultivo;
+        }
+
+        public String getFechaCosecha() {
+            return fechaCosecha;
+        }
+
+        public String getTipo() {
+            return Tipo;
+        }
+    }
+
+    public void add_rows() {
+        tabla_dinamica miTablaDinamica = new tabla_dinamica(Post_login.this, mitabla);
+        miTablaDinamica.addRows(listaCultivos);
     }
 }
 

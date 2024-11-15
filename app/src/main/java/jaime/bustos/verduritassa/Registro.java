@@ -115,13 +115,12 @@ public class Registro extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             if(user !=null){
-                                System.out.println(user.toString());
-
-                                //Almacenar datos
+                                System.out.println(user);
                                 almacenarDatosFirestore(user);
                             }else{
                                 Toast.makeText(Registro.this,"No se pudo obtener el usuario de la firestore",
                                         Toast.LENGTH_SHORT).show();
+                                System.out.println("Error con firebase firestore");
                             }
 
 
@@ -139,6 +138,7 @@ public class Registro extends AppCompatActivity {
     // FUNCION PARA ALMACENAR DATOS DEL USUARIO
     private void almacenarDatosFirestore(FirebaseUser user){
         user_id = user.getUid();
+        System.out.println("USER ID: "+user_id);
 
         // Crear usuario con nombre y pais
         Map<String, Object> datos_usuario = new HashMap<>();
@@ -147,18 +147,23 @@ public class Registro extends AppCompatActivity {
         datos_usuario.put("pais", pais.getText().toString());
         datos_usuario.put("genero",genero.getSelectedItem().toString());
 
+
+        Log.d(TAG,"user data: "+datos_usuario);
+
         db.collection("users").document(user_id)
                 .set(datos_usuario)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG,"Documento añadido");
+                        System.out.println("DOCUMENTO AÑADIDO");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.d(TAG,"No se pudo añadir, error: " + e);
+                        System.out.println("No se pudo añadir el documento error: " + e);
 
                     }
                 });

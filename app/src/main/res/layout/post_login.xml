@@ -66,8 +66,10 @@
         android:layout_marginEnd="70dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -90,7 +92,7 @@
                     android:textAlignment="center" />
 
                 <ImageButton
-                    android:id="@+id/imageButton"
+                    android:id="@+id/add"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -125,7 +127,7 @@
                         android:layout_height="wrap_content"
                         android:layout_weight="2"
                         android:padding="8dp"
-                        android:text="fecha"
+                        android:text="fecha cosecha"
                         android:textColor="@android:color/white" />
 
                     <TextView
@@ -136,29 +138,9 @@
                         android:textColor="@android:color/white" />
                 </TableRow>
 
-                <TableRow>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="2"
-                        android:text="" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:layout_weight="1"
-                        android:text="" />
-                </TableRow>
-
             </TableLayout>
         </LinearLayout>
     </ScrollView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

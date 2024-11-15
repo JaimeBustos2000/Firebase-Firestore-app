@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageButton
-            android:id="@+id/arrow"
+            android:id="@+id/arrow2"
             android:layout_width="27dp"
             android:layout_height="wrap_content"
             android:layout_weight="3"
@@ -29,9 +29,9 @@
             android:id="@+id/verduritas"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
             android:layout_weight="3"
             android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
             android:text="   Verduritas SA"
             android:textSize="35sp" />
 
@@ -54,12 +54,13 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/Layoutedit"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="50dp"
         android:layout_marginTop="150dp"
         android:layout_marginEnd="50dp"
-        android:layout_marginBottom="25dp"
+        android:layout_marginBottom="150dp"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -67,68 +68,63 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tipo_cultivo_invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <TextView
+            android:id="@+id/textView3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:text="Alias"
-            android:textSize="25sp"
-            android:layout_marginBottom="15dp"
-            />
-
-
-        <EditText
-            android:id="@+id/alias"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:ems="10"
-            android:inputType="text"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:background="@drawable/edit_text_rounded"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:id="@+id/date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Fecha"
-            android:textSize="25sp"
-            android:layout_marginBottom="15dp"
-            />
-
-        <EditText
-            android:id="@+id/Date"
-            android:layout_width="match_parent"
-            android:layout_height="35dp"
-            android:ems="10"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:inputType="date"
-            android:background="@drawable/edit_text_rounded"
-            android:layout_marginBottom="15dp"/>
-
-        <TextView
-            android:id="@+id/scroll"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="15dp"
-            android:text="Tipo de cultivo"
             android:textSize="25sp" />
 
-        <Spinner
-            android:id="@+id/spinner_cultivo"
+        <EditText
+            android:id="@+id/alias_cultivo_actual"
             android:layout_width="match_parent"
-            android:layout_height="38dp"
-            android:background="@drawable/edit_text_rounded"
-            android:layout_marginBottom="15dp"
-            android:entries="@array/tipocultivo" />
+            android:layout_height="35dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="15dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
 
-        <Button
-            android:id="@+id/add_cultivo"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:inputType="text"
+            android:text="" />
+
+        <TextView
+            android:id="@+id/textView6"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Fecha cultivo"
+            android:textSize="25sp" />
+
+        <EditText
+            android:id="@+id/fecha_cultivo_actual"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_marginTop="15dp"
+            android:paddingStart="16dp"
+            android:paddingEnd="16dp"
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:inputType="text"
+            android:text="" />
+
+        <Button
+            android:id="@+id/guardar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:backgroundTint="@color/verdeclaro"
-            android:text="Añadir cultivo" />
+            android:text="Guardar cambios" />
 
     </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

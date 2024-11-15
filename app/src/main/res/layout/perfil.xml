@@ -27,14 +27,13 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/nombre_actual"
+            android:id="@+id/nombre_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_rounded"
             android:clickable="false"
             android:ems="10"
             android:focusable="false"
-            android:inputType="textEmailAddress"
             android:textSize="25sp" />
 
         <TextView
@@ -45,27 +44,31 @@
             android:textSize="20sp" />
 
         <EditText
-            android:id="@+id/pais_actual"
+            android:id="@+id/pais_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/edit_text_rounded"
             android:clickable="false"
             android:ems="10"
             android:focusable="false"
-            android:inputType="textEmailAddress"
             android:textSize="25sp" />
 
         <TextView
             android:id="@+id/Genero"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Genero" />
+            android:text="Genero"
+            android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/spinner2"
+        <EditText
+            android:id="@+id/genero_usuario"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/generos"/>
+            android:background="@drawable/edit_text_rounded"
+            android:ems="10"
+            android:clickable="false"
+            android:focusable="false"
+            android:textSize="25sp" />
 
 
     </LinearLayout>
