@@ -8,6 +8,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.util.Log;
 import android.view.Gravity;
@@ -19,6 +20,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.core.content.ContextCompat;
 
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.firebase.auth.FirebaseAuth;
@@ -32,7 +35,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-
+// Tabla dinamica que obtiene el contexto(Actividad) y la referencia a la tabla
 public class tabla_dinamica {
     private Context context;
     private TableLayout tableLayout;
@@ -49,6 +52,7 @@ public class tabla_dinamica {
     // Método para agregar múltiples filas a la tabla
     // Pide un arraylist con la clase cultivos llamada data
     public void addRows(ArrayList<Post_login.Cultivo> data) {
+        // Itera cada objeto creado a partir de la cantidad de datos recuperados en la clase Cultivo
         for (Post_login.Cultivo cultivo : data) {
             TableRow tableRow = new TableRow(context);
 
@@ -80,39 +84,37 @@ public class tabla_dinamica {
             imageButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Crea un BottomSheetDialog e inflar el layout
+                    // Crear un BottomSheetDialog e inflar el layout
                     BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
                     View bottomSheetView = View.inflate(context, R.layout.button_dialog, null);
+                    bottomSheetView.setPadding(0,10,0,10);
 
                     // Añadir atributos al objeto del boton editar
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.edit_text_bg);
                     Button Editar_btn = bottomSheetView.findViewById(R.id.Editar);
                     Editar_btn.setText("Configuración de " + cultivo.getAlias());
-                    Editar_btn.setBackgroundColor(Color.parseColor("#bd8e37"));
+                    Editar_btn.setBackground(drawable);
                     Editar_btn.setTextColor(Color.WHITE);
                     Editar_btn.setTextSize(20);
 
                     // Añadir atributos al objeto del boton eliminar
+                    Drawable drawable2 = ContextCompat.getDrawable(context, R.drawable.edit_text_bg_eliminate);
                     Button delete_btn = bottomSheetView.findViewById(R.id.delete);
                     delete_btn.setText("Eliminar");
-                    delete_btn.setBackgroundColor(Color.RED);
+                    delete_btn.setTextColor(Color.WHITE);
+                    delete_btn.setBackground(drawable2);
                     delete_btn.setTextSize(20);
 
                     // Click listener para editar (Boton flotante)
                     Editar_btn.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-
+                            // Obtiene los datos para traspasarlos por la actividad
                             HashMap<String, Object> grupo_cultivos  = new HashMap<>();
                             grupo_cultivos.put("Alias",cultivo.getAlias());
                             grupo_cultivos.put("Fecha_cultivo",cultivo.getFechaCultivo());
                             grupo_cultivos.put("Fecha_cosecha",cultivo.getFechaCosecha());
                             grupo_cultivos.put("Tipo",cultivo.getTipo());
-
-
-                            if (context instanceof Activity){
-                                Activity activity = (Activity) context;
-                                activity.finish();
-                            }
 
                             Intent intents = new Intent(context, Editar_cultivo.class);
                             intents.putExtra("CULTIVOS", grupo_cultivos);
@@ -131,14 +133,11 @@ public class tabla_dinamica {
                         }
                     });
 
-
                     // Se añade lo que aparecera en la ventana flotante y se muestra
                     bottomSheetDialog.setContentView(bottomSheetView);
                     bottomSheetDialog.show();
-
                 }
             });
-
             // Se añade a las filas el boton de configuracion
             tableRow.addView(imageButton);
             // Se renderiza lo añadido a la fila por cada iteracion
@@ -162,14 +161,14 @@ public class tabla_dinamica {
                         if (task.isSuccessful()) {
                             QuerySnapshot querySnapshot = task.getResult();
                             if (querySnapshot != null && !querySnapshot.isEmpty()) {
-                                // Obtener el primer atributo de la consulta (en este caso el id)
+                                // 2. Obtener el primer atributo de la consulta (en este caso el id)
                                 DocumentSnapshot documentSnapshot = querySnapshot.getDocuments().get(0);
                                 String uid_objeto = documentSnapshot.getId();
 
-                                // Eliminar el documento con el uid obtenido
+                                // 3. Eliminar el documento con el uid obtenido
                                 eliminar_cultivo(user_id, uid_objeto);
 
-                                // Saltar a la actividad
+                                // 4. Saltar a la actividad
                                 Intent intents = new Intent(context,Post_login.class);
                                 context.startActivity(intents);
                             } else {
@@ -194,6 +193,7 @@ public class tabla_dinamica {
                 .delete()
                 .addOnSuccessListener(aVoid -> {
                     Log.d("Firestore", "Documento eliminado con éxito");
+                    Toast.makeText(context,"Cultivo eliminado con éxito",Toast.LENGTH_SHORT).show();
                 })
                 .addOnFailureListener(e -> {
                     Log.w("Error", "Error al eliminar el documento: " + e);

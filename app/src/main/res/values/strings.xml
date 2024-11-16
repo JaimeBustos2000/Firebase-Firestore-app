@@ -2,9 +2,15 @@
     <string name="app_name">Verduritas SA-JaimeBustos</string>
     <string name="action_settings">Settings</string>
     <string name="bienvenida">
-        Bienvenido a la aplicacion
+        Bienvenido a Verduritas-SA
     </string>
+
+    <string name="registrate">
+        No tienes cuenta? Registrate ahora.
+    </string>
+
     <string name="login">login</string>
+    <string name="ingresa_con_google">Ingresa con google</string>
 
     <string-array name="tipocultivo">
         <item>Tomates</item>
@@ -19,4 +25,8 @@
         <item>Masculino</item>
         <item>Otro</item>
     </string-array>
+
+    <string name="server_client_id">
+        711744129137-pma08i3smhn63bgh7q83l03m07494bjk.apps.googleusercontent.com
+    </string>
 </resources>

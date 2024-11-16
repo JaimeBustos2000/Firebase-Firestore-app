@@ -1,0 +1,15 @@
+[
+  {
+    "relation" : [
+      "delegate_permission/common.handle_all_urls",
+      "delegate_permission/common.get_login_creds"
+    ],
+    "target" : {
+      "namespace" : "android_app",
+      "package_name" : "jaime.bustos.verduritassa",
+      "sha256_cert_fingerprints" : [
+        "D7:C1:45:69:07:B4:11:F6:68:B7:BC:6F:AA:D4:F8:85:B1:20:B2:00:D5:16:59:A9:77:A6:31:77:04:85:67:C2"
+      ]
+    }
+  }
+]

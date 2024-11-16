@@ -30,21 +30,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:layout_gravity="center_vertical"
-            android:text="   Verduritas SA"
+            android:gravity="center"
+            android:text="Verduritas SA"
             android:textSize="35sp" />
 
         <ImageButton
-            android:id="@+id/perfil"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:backgroundTint="@color/green_menus"
-            app:srcCompat="@drawable/baseline_person_24" />
-
-        <ImageButton
-            android:id="@+id/desconectar"
+            android:id="@+id/desconectar_nuevo_cultivo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -128,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/verdeclaro"
+            android:background="@drawable/edit_text_rounded"
             android:text="Añadir cultivo" />
 
     </LinearLayout>

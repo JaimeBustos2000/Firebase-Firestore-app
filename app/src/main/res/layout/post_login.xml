@@ -22,9 +22,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="3"
-            android:gravity="center_vertical"
-            android:text="        Verduritas SA"
-            android:textSize="35sp" />
+            android:gravity="center"
+            android:text="Verduritas SA"
+            android:textSize="30sp" />
 
         <ImageButton
             android:id="@+id/perfil"
@@ -50,7 +50,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="72dp"
-        android:text="Bienvenido usuario"
+        android:text="Bienvenid@"
         android:textSize="25sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
@@ -85,23 +85,24 @@
 
                 <TextView
                     android:id="@+id/textView5"
-                    android:layout_width="217dp"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_weight="3"
                     android:text="Tus cosechas"
                     android:textAlignment="center" />
 
                 <ImageButton
                     android:id="@+id/add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:background="@color/green_menus"
                     android:paddingTop="5dp"
                     app:srcCompat="@drawable/baseline_add_circle_outline_24" />
 
-
             </LinearLayout>
+
 
             <TableLayout
                 android:id="@+id/tabla"

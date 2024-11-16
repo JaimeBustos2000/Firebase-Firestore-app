@@ -21,6 +21,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -36,13 +37,15 @@ public class Editar_cultivo extends AppCompatActivity {
 
     EditText Fcultivo;
     EditText Fecha_cultivo_nueva;
+
     Button guardar;
+    ImageButton desconectar;
+    ImageButton volver;
 
     EditText alias_antiguo;
     EditText alias;
 
     String nuevaFecha;
-
     String alias_db;
     String fechaCultivo_db;
     String fechaCosecha_db;
@@ -50,6 +53,7 @@ public class Editar_cultivo extends AppCompatActivity {
 
 
     FirebaseAuth mAuth;
+    FirebaseUser current_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -69,11 +73,12 @@ public class Editar_cultivo extends AppCompatActivity {
         Fecha_cultivo_nueva = findViewById(R.id.fecha_cultivo_actual);
         alias = findViewById(R.id.alias_cultivo_actual);
 
+        // Añadir showpickerdialog al presionar
         Fcultivo.setOnClickListener(View -> ShowPickerDialog());
 
-
-        ImageButton arrow = findViewById(R.id.arrow2);
-        arrow.setOnClickListener(new View.OnClickListener() {
+        // volver a la pantalla de los datos
+        volver = findViewById(R.id.arrow_editar);
+        volver.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intents = new Intent(Editar_cultivo.this,Post_login.class);
@@ -81,8 +86,8 @@ public class Editar_cultivo extends AppCompatActivity {
             }
         });
 
+        // boton guardar datos
         guardar = findViewById(R.id.guardar);
-
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -109,7 +114,32 @@ public class Editar_cultivo extends AppCompatActivity {
             }
         });
 
+        // desconectarse
+        desconectar = findViewById(R.id.desconectar_editar);
+        desconectar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salir();
+            }
+        });
+
     }
+
+    public void salir() {
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+
+        if (current_user != null) {
+            mAuth.signOut();
+            Intent intents = new Intent(Editar_cultivo.this, Login.class);
+            Toast.makeText(Editar_cultivo.this, "Saliendo....", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(intents);
+        } else {
+            Toast.makeText(Editar_cultivo.this, "Error inesperado al intentar desconectarse", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
     public void ShowPickerDialog(){
         // Obtener la fecha actual del EditText

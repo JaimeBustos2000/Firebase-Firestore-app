@@ -1,30 +1,50 @@
 package jaime.bustos.verduritassa;
 
+import static android.content.ContentValues.TAG;
+
+import android.app.Activity;
+import android.app.PendingIntent;
 import android.content.Intent;
+import android.credentials.Credential;
+import android.credentials.GetCredentialException;
+import android.credentials.GetCredentialRequest;
+import android.credentials.GetCredentialResponse;
 import android.os.Bundle;
+import android.os.CancellationSignal;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
+
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+
 import com.google.android.gms.tasks.OnCompleteListener;
+
 import com.google.android.gms.tasks.Task;
+
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
 
 public class Login extends AppCompatActivity {
 
     EditText email;
     EditText pass;
+    TextView registrate;
     Toast mensaje;
+
 
     private FirebaseAuth mAuth;
 
@@ -40,14 +60,17 @@ public class Login extends AppCompatActivity {
         });
 
 
+
         mAuth = FirebaseAuth.getInstance();
         // Campos de entrada
         email = findViewById(R.id.email);
         pass = findViewById(R.id.password);
+        registrate = findViewById(R.id.registrate);
+
 
         // Botones
         Button login = findViewById(R.id.iniciarSesion);
-        Button registrarse = findViewById(R.id.registrar);
+        Button inicio_google = findViewById(R.id.inicio_google);
 
         // CLIK LISTENER PARA EL INICIO DE SESION
         login.setOnClickListener(new View.OnClickListener() {
@@ -63,13 +86,21 @@ public class Login extends AppCompatActivity {
         });
 
         // CLICK LISTENER PARA EL REGISTRO DE USUARIOS
-        registrarse.setOnClickListener(new View.OnClickListener() {
+        inicio_google.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
+        registrate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intents = new Intent(Login.this, Registro.class);
                 startActivity(intents);
             }
         });
+
     }
 
 

@@ -138,17 +138,14 @@ public class Registro extends AppCompatActivity {
     // FUNCION PARA ALMACENAR DATOS DEL USUARIO
     private void almacenarDatosFirestore(FirebaseUser user){
         user_id = user.getUid();
-        System.out.println("USER ID: "+user_id);
+        System.out.println("USER ID: "+ user_id);
 
-        // Crear usuario con nombre y pais
+        // Crear usuario con nombre, pais y genero
         Map<String, Object> datos_usuario = new HashMap<>();
 
         datos_usuario.put("nombre", nombre.getText().toString());
         datos_usuario.put("pais", pais.getText().toString());
         datos_usuario.put("genero",genero.getSelectedItem().toString());
-
-
-        Log.d(TAG,"user data: "+datos_usuario);
 
         db.collection("users").document(user_id)
                 .set(datos_usuario)

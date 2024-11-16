@@ -8,155 +8,157 @@
     android:background="@drawable/gradient_background"
     tools:context=".Registro">
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:src="@drawable/logo"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginStart="70dp"
-        android:layout_marginTop="200dp"
-        android:layout_marginEnd="70dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/nombreingreso"
+        <LinearLayout
+            android:id="@+id/linearLayout3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Nombre"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            />
+            android:layout_marginStart="70dp"
+            android:layout_marginEnd="70dp"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/nombre_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:ems="10"
-            android:inputType="textEmailAddress"
-            android:paddingStart="16dp"
-            android:paddingTop="10dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="9dp"
-            android:textSize="20sp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
 
-        <TextView
-            android:id="@+id/nombrepais"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Pais"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            />
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:src="@drawable/logo" />
+            </LinearLayout>
 
-        <EditText
-            android:id="@+id/pais_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:ems="10"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="9dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:inputType="textEmailAddress" />
+            <TextView
+                android:id="@+id/nombreingreso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Nombre"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/emailtxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            />
+            <EditText
+                android:id="@+id/nombre_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="5dp"
+                android:paddingBottom="9dp"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/email_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:ems="10"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="9dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:inputType="textEmailAddress" />
+            <TextView
+                android:id="@+id/nombrepais"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Pais"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/generotxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Seleccione su genero"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            />
+            <EditText
+                android:id="@+id/pais_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="5dp"
+                android:textSize="20sp" />
 
-        <Spinner
-            android:id="@+id/generoadd"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="9dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:entries="@array/generos"
-            />
+            <TextView
+                android:id="@+id/emailtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Email"
+                android:textSize="20sp" />
 
-        <TextView
-            android:id="@+id/passtxt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Contraseña"
-            android:textSize="20sp"
-            android:layout_marginBottom="10dp"
-            />
+            <EditText
+                android:id="@+id/email_add"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:ems="10"
+                android:inputType="textEmailAddress"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="5dp"
+                android:textSize="20sp" />
 
-        <EditText
-            android:id="@+id/contrasena"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/edit_text_rounded"
-            android:ems="10"
-            android:textSize="20sp"
-            android:paddingTop="10dp"
-            android:paddingBottom="9dp"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:layout_marginBottom="20dp"
-            android:inputType="textPassword" />
+            <TextView
+                android:id="@+id/generotxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Seleccione su genero"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/btn_registro"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Registrar"
-            android:backgroundTint="@color/verde"
-            android:textColor="@color/white"
-            />
+            <Spinner
+                android:id="@+id/generoadd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/edit_text_rounded"
+                android:entries="@array/generos"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="5dp"
+                android:textSize="20sp" />
 
-        <Button
-            android:id="@+id/volver"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Volver"
-            android:backgroundTint="@color/naranja"
-            android:textColor="@color/white"
-            />
-    </LinearLayout>
+            <TextView
+                android:id="@+id/passtxt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:text="Contraseña"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/contrasena"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/edit_text_rounded"
+                android:ems="10"
+                android:inputType="textPassword"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingBottom="9dp"
+                android:paddingTop="5dp"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/btn_registro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/verde"
+                android:text="Registrar"
+                android:background="@drawable/edit_text_rounded"
+                android:layout_marginBottom="12dp"
+                android:textColor="@color/white" />
+
+            <Button
+                android:id="@+id/volver"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/naranja"
+                android:text="Volver"
+                android:background="@drawable/edit_text_rounded"
+                android:textColor="@color/white" />
+
+        </LinearLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

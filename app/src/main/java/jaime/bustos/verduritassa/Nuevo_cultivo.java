@@ -43,9 +43,10 @@ public class Nuevo_cultivo extends AppCompatActivity {
     Spinner tipo_cultivo;
 
     ImageButton volver;
+    ImageButton desconectar;
 
     FirebaseAuth mAuth;
-    FirebaseUser User;
+    FirebaseUser current_user;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -65,6 +66,8 @@ public class Nuevo_cultivo extends AppCompatActivity {
         fecha = findViewById(R.id.Date);
         tipo_cultivo = findViewById(R.id.spinner_cultivo);
         volver = findViewById(R.id.arrow);
+        desconectar = findViewById(R.id.desconectar_nuevo_cultivo);
+
         // Datepicker dialog
         fecha.setOnClickListener(View -> ShowPickerDialog());
 
@@ -106,8 +109,29 @@ public class Nuevo_cultivo extends AppCompatActivity {
                 startActivity(intents);
             }
         });
+
+        desconectar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                salir();
+            }
+        });
     }
 
+    public void salir() {
+        mAuth = FirebaseAuth.getInstance();
+        current_user = mAuth.getCurrentUser();
+
+        if (current_user != null) {
+            mAuth.signOut();
+            Intent intents = new Intent(Nuevo_cultivo.this, Login.class);
+            Toast.makeText(Nuevo_cultivo.this, "Saliendo....", Toast.LENGTH_SHORT).show();
+            finish();
+            startActivity(intents);
+        } else {
+            Toast.makeText(Nuevo_cultivo.this, "Error inesperado al intentar desconectarse", Toast.LENGTH_SHORT).show();
+        }
+    }
 
     public void ShowPickerDialog(){
         final Calendar calendar = Calendar.getInstance();
@@ -129,12 +153,12 @@ public class Nuevo_cultivo extends AppCompatActivity {
 
     public void anadir_cultivo_firestore(){
         mAuth = FirebaseAuth.getInstance();
-        User = mAuth.getCurrentUser();
+        current_user = mAuth.getCurrentUser();
 
         // Referencia al uid del usuario que fue usado para crear y relacionar sus propios datos
-        if (User != null){
+        if (current_user != null){
             String user_id;
-            user_id = User.getUid();
+            user_id = current_user.getUid();
 
             // Map para guardar los cultivos que va añadir el usuario
             Map <String, Object> cultivos_usuario = new HashMap<>();

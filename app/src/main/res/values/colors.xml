@@ -9,4 +9,7 @@
     <color name="rojo_claro">#EE4949 </color>
     <color name="amarillo_palido">#F3BC34 </color>
     <color name="green_menus">#9CEC32</color>
+    <color name="eliminate">#96C84C</color>
+    <color name="oro">#BD8E37</color>
+
 </resources>
