@@ -68,6 +68,7 @@ public class Editar_cultivo extends AppCompatActivity {
             return insets;
         });
 
+        enterImmersiveMode();
         iniciar_intents();
 
         Fecha_cultivo_nueva = findViewById(R.id.fecha_cultivo_actual);
@@ -306,4 +307,16 @@ public class Editar_cultivo extends AppCompatActivity {
         //Definir la nueva fecha en la variable
         nuevaFecha = nuevoDia + "/" + nuevoMes + "/" + nuevoAno;
     }
+
+    private void enterImmersiveMode() {
+        getWindow().getDecorView().setSystemUiVisibility(
+                View.SYSTEM_UI_FLAG_IMMERSIVE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
+    }
+
+
 }

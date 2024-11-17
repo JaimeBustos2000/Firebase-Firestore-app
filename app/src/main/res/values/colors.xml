@@ -6,10 +6,9 @@
     <color name="verdeclaro">#37BD4D</color>
     <color name="verde_tenue">#E9FBE0</color>
     <color name="naranja">#E7932C</color>
-    <color name="rojo_claro">#EE4949 </color>
-    <color name="amarillo_palido">#F3BC34 </color>
+    <color name="rojo_claro">#BC1313</color>
+    <color name="amarillo_palido">#E2AB25</color>
     <color name="green_menus">#9CEC32</color>
     <color name="eliminate">#96C84C</color>
     <color name="oro">#BD8E37</color>
-
 </resources>

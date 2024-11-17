@@ -85,25 +85,23 @@ public class tabla_dinamica {
                 @Override
                 public void onClick(View v) {
                     // Crear un BottomSheetDialog e inflar el layout
+                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.bottom_sheet_dialog);
                     BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(context);
                     View bottomSheetView = View.inflate(context, R.layout.button_dialog, null);
                     bottomSheetView.setPadding(0,10,0,10);
+                    bottomSheetView.setBackground(drawable);
 
                     // Añadir atributos al objeto del boton editar
-                    Drawable drawable = ContextCompat.getDrawable(context, R.drawable.edit_text_bg);
                     Button Editar_btn = bottomSheetView.findViewById(R.id.Editar);
                     Editar_btn.setText("Configuración de " + cultivo.getAlias());
-                    Editar_btn.setBackground(drawable);
                     Editar_btn.setTextColor(Color.WHITE);
-                    Editar_btn.setTextSize(20);
+                    Editar_btn.setTextSize(15);
 
                     // Añadir atributos al objeto del boton eliminar
-                    Drawable drawable2 = ContextCompat.getDrawable(context, R.drawable.edit_text_bg_eliminate);
                     Button delete_btn = bottomSheetView.findViewById(R.id.delete);
                     delete_btn.setText("Eliminar");
                     delete_btn.setTextColor(Color.WHITE);
-                    delete_btn.setBackground(drawable2);
-                    delete_btn.setTextSize(20);
+                    delete_btn.setTextSize(15);
 
                     // Click listener para editar (Boton flotante)
                     Editar_btn.setOnClickListener(new View.OnClickListener() {

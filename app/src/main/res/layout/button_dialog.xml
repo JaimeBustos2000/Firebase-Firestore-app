@@ -9,8 +9,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginStart="100dp"
-        android:layout_marginEnd="100dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -19,13 +17,19 @@
             android:id="@+id/Editar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/naranja"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             android:text="Button" />
 
         <Button
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/rojo_claro"
             android:text="Button"
+            android:layout_marginStart="100dp"
+            android:layout_marginEnd="100dp"
             tools:text="Eliminar" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

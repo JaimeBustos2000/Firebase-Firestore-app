@@ -15,6 +15,7 @@
         android:layout_height="wrap_content"
         android:text="@string/bienvenida"
         android:textSize="25sp"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -45,6 +46,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Email"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
         <EditText
@@ -59,6 +61,7 @@
             android:paddingBottom="9dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:textColor="@color/black"
             android:inputType="textEmailAddress" />
 
         <TextView
@@ -66,6 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Contraseña"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
         <EditText
@@ -79,6 +83,7 @@
             android:paddingBottom="9dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
+            android:textColor="@color/black"
             android:inputType="textPassword" />
 
         <LinearLayout
@@ -94,7 +99,6 @@
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
                 android:backgroundTint="@color/verdeclaro"
-                android:background="@drawable/edit_text_rounded"
                 android:text="Iniciar Sesion"
                 android:textColor="@color/black"
                 android:textSize="20sp"/>
@@ -105,9 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="15dp"
                 android:layout_weight="1"
-                android:background="@drawable/state_animation"
                 android:backgroundTint="@color/white"
-                android:backgroundTintMode="add"
                 android:drawableLeft="@drawable/googleg_standard_color_18"
                 android:drawablePadding="8dp"
                 android:paddingStart="16dp"
@@ -124,6 +126,7 @@
                 android:layout_height="wrap_content"
                 android:text="@string/registrate"
                 android:layout_weight="1"
+                android:textColor="@color/black"
                 android:textAlignment="center"/>
 
         </LinearLayout>

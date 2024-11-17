@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/verde_tenue"
+    android:textColor="@color/black"
     tools:context=".Nuevo_cultivo">
 
     <LinearLayout
@@ -115,7 +116,6 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:backgroundTint="@color/verdeclaro"
-            android:background="@drawable/edit_text_rounded"
             android:text="Guardar cambios" />
 
     </LinearLayout>
