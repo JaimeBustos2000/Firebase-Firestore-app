@@ -14,12 +14,16 @@ import androidx.lifecycle.lifecycleScope
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential.Companion.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+// import com.google.auth.oauth2.GoogleCredentials
 import com.google.firebase.Firebase
+import com.google.firebase.FirebaseApp
+import com.google.firebase.FirebaseOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.auth
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
+import java.io.FileInputStream
 
 
 class GoogleAuthActivity : AppCompatActivity() {
@@ -72,17 +76,37 @@ class GoogleAuthActivity : AppCompatActivity() {
         }
     }
 
+    @Suppress("DEPRECATION")
+    fun checkIfEmailExists(email: String, callback: (Boolean) -> Unit) {
+        val auth = FirebaseAuth.getInstance()
+        auth.fetchSignInMethodsForEmail(email)
+            .addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+                    val signInMethods = task.result?.signInMethods
+                    if (signInMethods.isNullOrEmpty()) {
+                        // No hay ningún usuario con este correo electrónico
+                        callback(false)
+                    } else {
+                        // Ya existe un usuario con este correo electrónico
+                        callback(true)
+                    }
+                } else {
+                    // Maneja el error
+                    callback(false)
+                }
+            }
+    }
+
     // Function to prompt the user to add a Google account (you can customize this method)
+    @Suppress("DEPRECATION")
     private fun showAddAccountDialog() {
         val intent = Intent(Settings.ACTION_ADD_ACCOUNT)
         intent.putExtra(Settings.EXTRA_ACCOUNT_TYPES, arrayOf("com.google"))
         startActivityForResult(intent, REQUEST_CODE_ADD_ACCOUNT)
     }
 
+
     companion object {
         private const val REQUEST_CODE_ADD_ACCOUNT = 1
     }
 }
-
-
-

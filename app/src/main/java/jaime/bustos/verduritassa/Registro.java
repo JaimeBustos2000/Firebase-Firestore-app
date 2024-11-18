@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -59,7 +60,7 @@ public class Registro extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        enterImmersiveMode();
+
 
         // CAMPOS DE TEXTO
         pais = findViewById(R.id.pais_add);
@@ -119,6 +120,7 @@ public class Registro extends AppCompatActivity {
                             if(user !=null){
                                 System.out.println(user);
                                 almacenarDatosFirestore(user);
+                                System.out.println("Datos almacenados");
                             }else{
                                 Toast.makeText(Registro.this,"No se pudo obtener el usuario de la firestore",
                                         Toast.LENGTH_SHORT).show();
@@ -127,10 +129,20 @@ public class Registro extends AppCompatActivity {
 
 
                         } else {
-                            // Obtener el error especifico al intentar crear usuario
-                            String error = (task.getException() != null) ? task.getException().toString() : "Error desconocido";
-                            Toast.makeText(Registro.this, "Hubo un error al crear el usuario: "+ error,
-                                    Toast.LENGTH_SHORT).show();
+                            if (task.getException() instanceof FirebaseAuthUserCollisionException) {
+                                // Error: el correo ya está en uso
+                                try {
+                                    FirebaseUser user = mAuth.getCurrentUser();
+                                    if (user != null) {
+                                        almacenarDatosFirestore(user);
+                                    }
+                                }catch (Exception e){
+                                    Toast.makeText(Registro.this, "Error al crear el usuario", Toast.LENGTH_SHORT).show();
+                                }
+                            } else {
+                                // Otro tipo de error
+                                Toast.makeText(Registro.this, "Error al crear el usuario", Toast.LENGTH_SHORT).show();
+                            }
                         }
                     }
                 });
