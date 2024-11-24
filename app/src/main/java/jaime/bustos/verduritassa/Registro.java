@@ -59,7 +59,6 @@ public class Registro extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
-        enterImmersiveMode();
 
         // CAMPOS DE TEXTO
         pais = findViewById(R.id.pais_add);
@@ -117,7 +116,6 @@ public class Registro extends AppCompatActivity {
                                     Toast.LENGTH_SHORT).show();
 
                             if(user !=null){
-                                System.out.println(user);
                                 almacenarDatosFirestore(user);
                             }else{
                                 Toast.makeText(Registro.this,"No se pudo obtener el usuario de la firestore",
@@ -138,32 +136,43 @@ public class Registro extends AppCompatActivity {
 
 
     // FUNCION PARA ALMACENAR DATOS DEL USUARIO
-    private void almacenarDatosFirestore(FirebaseUser user){
+    private void almacenarDatosFirestore(FirebaseUser user) {
+        if (user == null) {
+            Log.d(TAG, "Usuario no autenticado");
+            return;
+        }
+
         user_id = user.getUid();
-        System.out.println("USER ID: "+ user_id);
+        Log.d(TAG, "USER ID: " + user_id);
 
-        // Crear usuario con nombre, pais y genero
+        String nombreStr = nombre.getText().toString();
+        String paisStr = pais.getText().toString();
+        String generoStr = genero.getSelectedItem().toString();
+
+        if (nombreStr.isEmpty() || paisStr.isEmpty() || generoStr.isEmpty()) {
+            Log.d(TAG, "Uno o más campos están vacíos.");
+            return;
+        }
+
         Map<String, Object> datos_usuario = new HashMap<>();
-
-        datos_usuario.put("nombre", nombre.getText().toString());
-        datos_usuario.put("pais", pais.getText().toString());
-        datos_usuario.put("genero",genero.getSelectedItem().toString());
+        datos_usuario.put("nombre", nombreStr);
+        datos_usuario.put("pais", paisStr);
+        datos_usuario.put("genero", generoStr);
 
         db.collection("users").document(user_id)
                 .set(datos_usuario)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
-                        Log.d(TAG,"Documento añadido");
+                        Log.d(TAG, "Documento añadido");
                         System.out.println("DOCUMENTO AÑADIDO");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.d(TAG,"No se pudo añadir, error: " + e);
+                        Log.d(TAG, "No se pudo añadir, error: " + e);
                         System.out.println("No se pudo añadir el documento error: " + e);
-
                     }
                 });
     }
@@ -182,13 +191,5 @@ public class Registro extends AppCompatActivity {
         }
     }
 
-    private void enterImmersiveMode() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
+
 }
