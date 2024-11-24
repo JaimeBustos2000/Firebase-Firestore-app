@@ -14,15 +14,7 @@
       },
       "oauth_client": [
         {
-          "client_id": "711744129137-ung67bl3knh5k24trvdkis9r8o414i9l.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "jaime.bustos.verduritassa",
-            "certificate_hash": "7a8a9e6254db67e8e323dfa1e77a12ad8f1d7cb6"
-          }
-        },
-        {
-          "client_id": "711744129137-pma08i3smhn63bgh7q83l03m07494bjk.apps.googleusercontent.com",
+          "client_id": "711744129137-r2ns4fmqa6drkn8sfdbmv8qontn21ing.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
@@ -35,7 +27,7 @@
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "711744129137-pma08i3smhn63bgh7q83l03m07494bjk.apps.googleusercontent.com",
+              "client_id": "711744129137-r2ns4fmqa6drkn8sfdbmv8qontn21ing.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
