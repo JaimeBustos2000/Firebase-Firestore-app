@@ -17,16 +17,17 @@
             android:id="@+id/Editar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/naranja"
+            android:backgroundTint="#A5D6A7"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"
+            android:textColor="@color/black"
             android:text="Button" />
 
         <Button
             android:id="@+id/delete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="@color/rojo_claro"
+            android:backgroundTint="#388E3C"
             android:text="Button"
             android:layout_marginStart="100dp"
             android:layout_marginEnd="100dp"

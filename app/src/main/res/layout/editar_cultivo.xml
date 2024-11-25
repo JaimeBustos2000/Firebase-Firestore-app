@@ -34,6 +34,7 @@
             android:layout_weight="3"
             android:gravity="center"
             android:text="Verduritas SA"
+            android:textColor="@color/black"
             android:textSize="35sp" />
 
         <ImageButton
@@ -71,6 +72,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Alias"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
         <EditText
@@ -82,7 +84,7 @@
             android:layout_marginTop="15dp"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-
+            android:textColor="@color/black"
             android:background="@drawable/edit_text_rounded"
             android:ems="10"
             android:inputType="text"
@@ -94,6 +96,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
             android:text="Fecha cultivo"
+            android:textColor="@color/black"
             android:textSize="25sp" />
 
         <EditText
@@ -107,6 +110,7 @@
             android:paddingEnd="16dp"
             android:background="@drawable/edit_text_rounded"
             android:ems="10"
+            android:textColor="@color/black"
             android:inputType="text"
             android:text="" />
 
@@ -115,6 +119,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:textColor="@color/white"
             android:backgroundTint="@color/verdeclaro"
             android:text="Guardar cambios" />
 

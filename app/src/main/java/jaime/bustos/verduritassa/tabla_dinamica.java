@@ -94,7 +94,6 @@ public class tabla_dinamica {
                     // Añadir atributos al objeto del boton editar
                     Button Editar_btn = bottomSheetView.findViewById(R.id.Editar);
                     Editar_btn.setText("Configuración de " + cultivo.getAlias());
-                    Editar_btn.setTextColor(Color.WHITE);
                     Editar_btn.setTextSize(15);
 
                     // Añadir atributos al objeto del boton eliminar

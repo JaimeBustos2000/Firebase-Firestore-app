@@ -97,4 +97,8 @@ Para ver su informacion guardada presione el icono de perfil y si desea desconec
 Ante cualquier error, primero verifique en tener una version de android reciente, verifique los archivo **.gradle.kts** esten configurados correctamente, verificar archivo TOML si es necesario. Verificar importacion de librerias y versiones correspondientes al sdk del proyecto.
 
 **IMPORTANTE** Por alguna razon desinstalar la apk puede solucionar los problemas en la emulacion o insercion de datos con firebase.
+-Gradle 8.7
+-Android Studio Koala 10/07/24 version
+-File -> invalidate caches
+Posibles problemas con la asincronia en java. Handlers
 
