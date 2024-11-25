@@ -96,8 +96,5 @@ Para ver su informacion guardada presione el icono de perfil y si desea desconec
 ## Solucion errores
 Ante cualquier error, primero verifique en tener una version de android reciente, verifique los archivo **.gradle.kts** esten configurados correctamente, verificar archivo TOML si es necesario. Verificar importacion de librerias y versiones correspondientes al sdk del proyecto.
 
-**IMPORTANTE** 
-Por alguna razon desinstalar la apk puede solucionar los problemas en la emulacion o insercion de datos.
--Gradle 8.7
--File -invalidate caches
+**IMPORTANTE** Por alguna razon desinstalar la apk puede solucionar los problemas en la emulacion o insercion de datos con firebase.
 
