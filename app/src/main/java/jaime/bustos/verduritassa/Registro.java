@@ -4,6 +4,7 @@ import static android.content.ContentValues.TAG;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -80,10 +81,13 @@ public class Registro extends AppCompatActivity {
                 if(validarDatos()){
                     Intent intents = new Intent(Registro.this,Login.class);
                     registrar();
+                    new Handler().postDelayed(() -> {
+                        Log.w("Esperar","Esperando x segundos");
+                        mensaje = Toast.makeText(Registro.this,"Usuario creado, inicie sesion con sus credenciales",Toast.LENGTH_SHORT);
+                        mensaje.show();
+                        startActivity(intents);
+                            },3000);
 
-                    mensaje = Toast.makeText(Registro.this,"Usuario creado, inicie sesion con sus credenciales",Toast.LENGTH_SHORT);
-                    mensaje.show();
-                    startActivity(intents);
                 }else{
                     mensaje = Toast.makeText(Registro.this,"Compruebe que los campos no esten vacios",Toast.LENGTH_SHORT);
                     mensaje.show();
@@ -111,18 +115,15 @@ public class Registro extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            Toast.makeText(Registro.this,"Usuario creado satisfactoriamente",
-                                    Toast.LENGTH_SHORT).show();
-
-                            if(user !=null){
-                                almacenarDatosFirestore(user);
-                            }else{
-                                Toast.makeText(Registro.this,"No se pudo obtener el usuario de la firestore",
-                                        Toast.LENGTH_SHORT).show();
-                                System.out.println("Error con firebase firestore");
-                            }
-
+                            new Handler().postDelayed(() -> {
+                                FirebaseUser user = mAuth.getCurrentUser();
+                                if (user != null) {
+                                    almacenarDatosFirestore(user);
+                                    Log.d("Firebase", "User after delay: " + user.getEmail());
+                                } else {
+                                    Log.d("Firebase", "User still null after delay");
+                                }
+                            }, 3000);
 
                         } else {
                             // Obtener el error especifico al intentar crear usuario

@@ -59,8 +59,6 @@ public class Login extends AppCompatActivity {
             return insets;
         });
 
-        enterImmersiveMode();
-
         mAuth = FirebaseAuth.getInstance();
         // Campos de entrada
         email = findViewById(R.id.email);
@@ -89,7 +87,6 @@ public class Login extends AppCompatActivity {
         inicio_google.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
             }
         });
 
@@ -139,13 +136,4 @@ public class Login extends AppCompatActivity {
         }
     }
 
-    private void enterImmersiveMode() {
-        getWindow().getDecorView().setSystemUiVisibility(
-                View.SYSTEM_UI_FLAG_IMMERSIVE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
-                        | View.SYSTEM_UI_FLAG_FULLSCREEN);
-    }
 }
